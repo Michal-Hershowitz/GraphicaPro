@@ -4,8 +4,10 @@ using Dal.Models;
 using Dal.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+//
 
 var builder = WebApplication.CreateBuilder(args);
+//
 
 builder.Services.AddCors(options =>
 {
@@ -29,8 +31,13 @@ builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("DataBaseSettings:ConnectionString")));
 
-builder.Services.AddScoped<IServicesEmployee, ServicesEmployee>();
+builder.Services.AddScoped<ICrud<Employee>, ServicesEmployee>();
 
+//
+
+builder.Services.AddScoped<ICrud<Customer>, ServicesCustomer>();
+
+//
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

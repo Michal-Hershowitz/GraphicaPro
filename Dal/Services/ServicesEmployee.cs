@@ -8,14 +8,14 @@ using MongoDB.Driver;
 
 namespace Dal.Services
 {
-    public class ServicesEmployee : IServicesEmployee
+    public class ServicesEmployee : ICrud<Employee>
     {
         private readonly IMongoCollection<Employee> _employees;
 
         public ServicesEmployee(IDataBaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _employees = database.GetCollection<Employee>(settings.CollectionName);
+            _employees = database.GetCollection<Employee>(settings.CollectionEmployee);
         }
         public Employee Create(Employee employee)
         {

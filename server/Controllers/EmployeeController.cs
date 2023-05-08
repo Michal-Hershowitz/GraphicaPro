@@ -11,8 +11,8 @@ namespace server.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IServicesEmployee servicesEmployee;
-        public EmployeeController(IServicesEmployee servicesEmployee)
+        private readonly ICrud<Employee> servicesEmployee;
+        public EmployeeController(ICrud<Employee> servicesEmployee)
         {
             this.servicesEmployee = servicesEmployee;
         }

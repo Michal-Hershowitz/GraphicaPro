@@ -12,6 +12,7 @@ namespace Dal.Models
 
         public string DatabaseName { get; set; } = String.Empty;//מימוש הפונקציות מהאינטרפייס
 
-        public string CollectionName { get; set; } = String.Empty;//ממימוש הפונקציות מהאינטרפייס
+        public string CollectionEmployee { get; set; } = String.Empty;//ממימוש הפונקציות מהאינטרפייס
+        public string CollectionCustomer { get; set; } = String.Empty;//ממימוש הפונקציות מהאינטרפייס
     }
 }

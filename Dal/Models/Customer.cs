@@ -7,19 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-
-
 namespace Dal.Models
 {
-    public class Employee
+    public class Customer
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        
-        public string Id { get; set; }
+        public string? Id { get; set; }
         [BsonElement("name")]
-        public string Name { get; set; }
-        [BsonElement("password")]
-        public int Password { get; set; }
+        public string Name{ get; set; }
+
+
+        
     }
 }

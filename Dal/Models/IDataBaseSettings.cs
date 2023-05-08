@@ -12,7 +12,7 @@ namespace Dal.Models
 
         string DatabaseName { get; set; } //משתנה שיכיל את השם של הדטה בייס
 
-        string CollectionName { get; set; } //משתנה שיכיל את השם של הטבלה בדטה בייס
-
+        string CollectionEmployee { get; set; } //משתנה שיכיל את השם של הטבלה בדטה בייס
+        string CollectionCustomer { get; set; } //משתנה שיכיל את השם של הטבלה בדטה בייס
     }
 }
