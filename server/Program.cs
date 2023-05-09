@@ -9,15 +9,25 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 //
 
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>(); 
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.AllowAnyOrigin()
-                          .AllowAnyHeader()
-                                .AllowAnyMethod(); 
-                      });
+    var frontendURL=configuration.GetValue<string>("frontend_url");
+
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+    });
+
+    //options.AddPolicy(name: MyAllowSpecificOrigins,
+    //                  policy =>
+    //                  {
+    //                      policy.AllowAnyOrigin()
+    //                      .AllowAnyHeader()
+    //                            .AllowAnyMethod(); 
+    //                  });
 });
 
 // Add services to the container.
@@ -56,7 +66,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseCors(MyAllowSpecificOrigins);
+//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors();
 
 app.UseAuthorization();
 

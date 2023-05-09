@@ -13,7 +13,7 @@ namespace Bl.DTO
 
         public void updateHour(int firstHour) {
 
-            servicesCustomer.Update();
+           // servicesCustomer.Update();
 
            }
 

@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Cors;
 
 namespace server.Controllers
 {
-    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
+    [EnableCors]
     [ApiController]
     public class CustomerController : ControllerBase
     {
