@@ -20,6 +20,6 @@ namespace Dal.Models
         [BsonElement("name")]
         public string Name { get; set; }
         [BsonElement("password")]
-        public int Password { get; set; }
+        public int? Password { get; set; }
     }
 }
