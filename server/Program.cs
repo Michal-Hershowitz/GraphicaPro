@@ -2,6 +2,10 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Dal.Models;
 using Dal.Services;
+using Bl.Interface;
+using Bl.Profiles;
+using Bl;
+using Dal.Interface;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 //
@@ -10,11 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 //
 
 var provider = builder.Services.BuildServiceProvider();
-var configuration = provider.GetRequiredService<IConfiguration>(); 
+
+var configuration = provider.GetRequiredService<IConfiguration>();
 
 builder.Services.AddCors(options =>
 {
-    var frontendURL=configuration.GetValue<string>("frontend_url");
+    var frontendURL = configuration.GetValue<string>("frontend_url");
 
     options.AddDefaultPolicy(builder =>
     {
@@ -41,11 +46,14 @@ builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("DataBaseSettings:ConnectionString")));
 
-builder.Services.AddScoped<ICrud<Employee>, ServicesEmployee>();
+//builder.Services.AddScoped<ICrud<Employee>, ServicesEmployee>();
 
 //
+//builder.Services.AddScoped<ICrud<Customer>, ServicesCustomer>();
+builder.Services.AddAutoMapper(typeof(CustomerProfile));
+builder.Services.AddScoped<IServicesCustomer, ServicesCustomer>();
 
-builder.Services.AddScoped<ICrud<Customer>, ServicesCustomer>();
+builder.Services.AddScoped<IFunctionCustomerBl, FunctionCustomerBL>();
 
 //
 builder.Services.AddControllers();

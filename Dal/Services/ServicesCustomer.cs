@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Dal.Models;
 using MongoDB.Driver;
+using Dal.Interface;
 
 
 namespace Dal.Services
 {
-    public class ServicesCustomer : ICrud<Customer>
+    public class ServicesCustomer : IServicesCustomer
     {
         private readonly IMongoCollection<Customer> _customers;
 
@@ -18,33 +19,34 @@ namespace Dal.Services
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _customers = database.GetCollection<Customer>(settings.CollectionCustomer);
         }
-        public Customer Create(Customer customer)
+        public async Task<Customer> Create(Customer customer)
         {
             _customers.InsertOne(customer);
             return customer;
         }
 
-        public List<Customer> Get()
+        public async Task<List<Customer>> Get()
         {
-            return _customers.Find(customers => true).ToList();
+            var x = _customers.Find(customers => true).ToList();
+            return x;
         }
 
-        public Customer Get(string id)
+        public async Task<Customer> Get(string id)
         {
             return _customers.Find(customers => customers.Id == id).FirstOrDefault();
         }
 
-        public void Remove(string id)
+        public async Task Remove(string id)
         {
             _customers.DeleteOne(customers => customers.Id == id);
         }
 
-        public void Update(string id, Customer customer)
+        public async Task Update(string id, Customer customer)
         {
             _customers.ReplaceOne(customers => customers.Id == id, customer);
         }
 
-       
+
     }
 
 }

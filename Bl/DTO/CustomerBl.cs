@@ -1,15 +1,14 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-
-namespace Dal.Models
+namespace Bl.DTO
 {
-    public class Customer
+    public class CustomerBl
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -19,7 +18,7 @@ namespace Dal.Models
         public int? Password { get; set; }
 
         [BsonElement("name")]
-        public string Name{ get; set; }
+        public string Name { get; set; }
 
         [BsonElement("email")]
         public string Email { get; set; }
@@ -27,7 +26,7 @@ namespace Dal.Models
         [BsonElement("phone")]
         public string Phone { get; set; }
 
-        public Customer(string id, int password, string name, string email, string phone)
+        public CustomerBl(string id, int password, string name, string email, string phone)
         {
             Id = id;
             Password = password;
@@ -35,7 +34,5 @@ namespace Dal.Models
             Email = email;
             Phone = phone;
         }
-
-
     }
 }

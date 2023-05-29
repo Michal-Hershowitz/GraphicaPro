@@ -2,6 +2,8 @@
 using Dal.Models;
 using Dal.Services;
 using Microsoft.AspNetCore.Cors;
+using Bl.DTO;
+using Bl.Interface;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace server.Controllers
@@ -10,64 +12,68 @@ namespace server.Controllers
     [EnableCors]
     [ApiController]
     public class CustomerController : ControllerBase
+
     {
-        private readonly ICrud<Customer> servicesCustomer;
-        public CustomerController(ICrud<Customer> servicesCustomer)
+        IFunctionCustomerBl servicesCustomer;
+        //private readonly ICrud<Customer> servicesCustomer;
+        public CustomerController(/*ICrud<Customer> servicesCustomer*/ IFunctionCustomerBl servicesCustomer)
         {
             this.servicesCustomer = servicesCustomer;
         }
         // GET: api/<CustomerController>
         [HttpGet]
-        public ActionResult<List<Customer>> Get()
+        public async Task<List<CustomerBl>> Get()
         {
-            return servicesCustomer.Get();
+            return await servicesCustomer.Get();
         }
 
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
-        public ActionResult<Customer> Get(string id)
+        public async Task<CustomerBl> Get(string id)
         {
-             var customer = servicesCustomer.Get(id);
+            CustomerBl customer = await servicesCustomer.Get(id);
 
             if (customer == null)
             {
-                return NotFound($"Customer with Id = {id} not found");
+                //return NotFound ($"Customer with Id = {id} not found");
             }
             return customer;
         }
 
         // POST api/<CustomerController>
         [HttpPost]
-        public ActionResult<Customer> Post([FromBody] Customer customer)
+        public async Task<CustomerBl> Post([FromBody] CustomerBl customer)
         {
-            servicesCustomer.Create(customer);
-            return CreatedAtAction(nameof(Get), new {id= customer.Id }, customer);
+            CustomerBl customer1 = await servicesCustomer.Create(customer);
+            //CreatedAtAction(nameof(Get), new { id = customer.Id }, customer);
+            return customer1; 
         }
 
         // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Customer customer)
+        public async Task Put(string id, [FromBody] CustomerBl customer)
         {
-            var existingCustomer = servicesCustomer.Get(id);
-            if (existingCustomer == null) 
-            { 
-                return NotFound($"Customer with Id = {id} not found");
+            CustomerBl existingCustomer = await servicesCustomer.Get(id);
+            if (existingCustomer == null)
+            {
+                // return NotFound($"Customer with Id = {id} not found");
             }
-            servicesCustomer.Update(id, customer);
-            return NoContent();
+            await servicesCustomer.Update(id, existingCustomer);
+            //return NoContent();
+            //return await servicesCustomer.Update(id,);
         }
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public async Task Delete(string id)
         {
-            var customer = servicesCustomer.Get(id);
-            if(customer == null)
+            CustomerBl customer = await servicesCustomer.Get(id);
+            if (customer == null)
             {
-                return NotFound($"Employee with Id = {id} not found");
+                //return NotFound($"Employee with Id = {id} not found");
             }
-            servicesCustomer.Remove(customer.Id);
-            return Ok($"Customer with Id = {id} deleted");
+            await servicesCustomer.Remove(customer.Id);
+            //return Ok($"Customer with Id = {id} deleted");
         }
     }
 }
