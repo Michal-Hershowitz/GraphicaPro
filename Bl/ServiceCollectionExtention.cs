@@ -17,6 +17,10 @@ namespace Bl
             services.AddAutoMapper(typeof(CustomerProfile));
             services.AddTransient<IServicesCustomer, ServicesCustomer>();
             return services;
+
+            services.AddAutoMapper(typeof(EmployeeProfile));
+            services.AddTransient<IServicesEmployee, ServicesEmployee>();
+            return services;
         }
     }
 }

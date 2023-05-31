@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Bl.DTO;
 using Bl.Interface;
 using Dal.Interface;
 using Dal.Models;
-using Dal.Services;
 
 namespace Bl
+
 {
     public class FunctionCustomerBL : IFunctionCustomerBl
     {
+
         IServicesCustomer services;
         IMapper mapper;
         public FunctionCustomerBL(IServicesCustomer services, IMapper mapper)

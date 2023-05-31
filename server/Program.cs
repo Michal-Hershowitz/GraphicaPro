@@ -52,8 +52,12 @@ builder.Services.AddSingleton<IMongoClient>(s =>
 //builder.Services.AddScoped<ICrud<Customer>, ServicesCustomer>();
 builder.Services.AddAutoMapper(typeof(CustomerProfile));
 builder.Services.AddScoped<IServicesCustomer, ServicesCustomer>();
-
 builder.Services.AddScoped<IFunctionCustomerBl, FunctionCustomerBL>();
+
+
+builder.Services.AddAutoMapper(typeof(EmployeeProfile));
+builder.Services.AddScoped<IServicesEmployee, ServicesEmployee>();
+builder.Services.AddScoped<IFunctionEmployeeBl, FunctionEmployeeBL>();
 
 //
 builder.Services.AddControllers();

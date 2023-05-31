@@ -1,74 +1,78 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-//using Dal.Models;
-//using Dal.Services;
-//using Microsoft.AspNetCore.Cors;
-//// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Mvc;
+using Dal.Models;
+using Dal.Services;
+using Microsoft.AspNetCore.Cors;
+using Bl.Interface;
+using Bl.DTO;
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-//namespace server.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [EnableCors]
-//    [ApiController]
-//    public class EmployeeController : ControllerBase
-//    {
-//        private readonly ICrud<Employee> servicesEmployee;
-//        public EmployeeController(ICrud<Employee> servicesEmployee)
-//        {
-//            this.servicesEmployee = servicesEmployee;
-//        }
-//        // GET: api/<EmployeeController>
-//        [HttpGet]
-//        public ActionResult<List<Employee>> Get()
-//        {
-//            return servicesEmployee.Get();
-//        }
+namespace server.Controllers
+{
+    [Route("api/[controller]")]
+    [EnableCors]
+    [ApiController]
+    public class EmployeeController : ControllerBase
 
-//        // GET api/<EmployeeController>/5
-//        [HttpGet("{id}")]
-//        public ActionResult<Employee> Get(string id)
-//        {
-//             var employee = servicesEmployee.Get(id);
+    {
+        IFunctionEmployeeBl servicesEmployee;
+        //private readonly ICrud<Customer> servicesCustomer;
+        public EmployeeController(/*ICrud<Customer> servicesCustomer*/ IFunctionEmployeeBl servicesEmployee)
+        {
+            this.servicesEmployee = servicesEmployee;
+        }
+        // GET: api/<CustomerController>
+        [HttpGet]
+        public async Task<List<EmployeeBl>> Get()
+        {
+            return await servicesEmployee.Get();
+        }
 
-//            if (employee == null)
-//            {
-//                return NotFound($"Employee with Id = {id} not found");
-//            }
-//            return employee;
-//        }
+        // GET api/<CustomerController>/5
+        [HttpGet("{id}")]
+        public async Task<EmployeeBl> Get(string id)
+        {
+            EmployeeBl employee = await servicesEmployee.Get(id);
 
-//        // POST api/<EmployeeController>
-//        [HttpPost]
-//        public ActionResult<Employee> Post([FromBody] Employee employee)
-//        {
-//            employee.Id = MongoDB.Bson.ObjectId.GenerateNewId().ToString();
-//            servicesEmployee.Create(employee);
-//            return CreatedAtAction(nameof(Get), new {id= employee.Id },employee);
-//        }
+            if (employee == null)
+            {
+                //return NotFound ($"Customer with Id = {id} not found");
+            }
+            return employee;
+        }
 
-//        // PUT api/<EmployeeController>/5
-//        [HttpPut("{id}")]
-//        public ActionResult Put(string id, [FromBody] Employee employee)
-//        {
-//            var existingEmployee = servicesEmployee.Get(id);
-//            if (existingEmployee==null) 
-//            { 
-//                return NotFound($"Employee with Id = {id} not found");
-//            }
-//            servicesEmployee.Update(id,employee);
-//            return NoContent();
-//        }
+        // POST api/<CustomerController>
+        [HttpPost("post")]
+        public async Task<EmployeeBl> Post([FromBody] EmployeeBl employee)
+        {
+            EmployeeBl employees1 = await servicesEmployee.Create(employee);
+            return employees1; /*CreatedAtAction(nameof(Get), new {id= customer.Id }, customer);*/
+        }
 
-//        // DELETE api/<EmployeeController>/5
-//        [HttpDelete("{id}")]
-//        public ActionResult Delete(string id)
-//        {
-//            var employee = servicesEmployee.Get(id);
-//            if(employee == null)
-//            {
-//                return NotFound($"Employee with Id = {id} not found");
-//            }
-//            servicesEmployee.Remove(employee.Id);
-//            return Ok($"Employee with Id = {id} deleted");
-//        }
-//    }
-//}
+        // PUT api/<CustomerController>/5
+        [HttpPut("{id}")]
+        public async Task Put(string id, [FromBody] EmployeeBl employee)
+        {
+            EmployeeBl existingEmployee = await servicesEmployee.Get(id);
+            if (existingEmployee == null)
+            {
+                // return NotFound($"Customer with Id = {id} not found");
+            }
+            await servicesEmployee.Update(id, existingEmployee);
+            //return NoContent();
+            //return await servicesCustomer.Update(id,);
+        }
+
+        // DELETE api/<CustomerController>/5
+        [HttpDelete("{id}")]
+        public async Task Delete(string id)
+        {
+            EmployeeBl employee = await servicesEmployee.Get(id);
+            if (employee == null)
+            {
+                //return NotFound($"Employee with Id = {id} not found");
+            }
+            await servicesEmployee.Remove(employee.Id);
+            //return Ok($"Customer with Id = {id} deleted");
+        }
+    }
+}

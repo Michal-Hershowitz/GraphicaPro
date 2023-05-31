@@ -22,7 +22,7 @@ namespace Dal.Services
         public async Task<Customer> Create(Customer customer)
         {
             _customers.InsertOne(customer);
-            return customer;
+            return null;
         }
 
         public async Task<List<Customer>> Get()

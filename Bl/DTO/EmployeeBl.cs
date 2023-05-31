@@ -12,8 +12,8 @@ namespace Bl.DTO
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-
-        public string? Id { get; set; }
+        [BsonIgnore]
+        public string? Id { get;  }
         [BsonElement("name")]
         public string Name { get; set; }
         [BsonElement("password")]
@@ -24,6 +24,10 @@ namespace Bl.DTO
             Id = id;
             Name = name;
             Password = password;
+        }
+        public EmployeeBl()
+        {
+
         }
 
     }

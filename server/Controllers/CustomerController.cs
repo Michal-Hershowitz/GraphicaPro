@@ -2,8 +2,8 @@
 using Dal.Models;
 using Dal.Services;
 using Microsoft.AspNetCore.Cors;
-using Bl.DTO;
 using Bl.Interface;
+using Bl.DTO;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace server.Controllers
@@ -41,12 +41,11 @@ namespace server.Controllers
         }
 
         // POST api/<CustomerController>
-        [HttpPost]
+        [HttpPost("post")]
         public async Task<CustomerBl> Post([FromBody] CustomerBl customer)
         {
             CustomerBl customer1 = await servicesCustomer.Create(customer);
-            //CreatedAtAction(nameof(Get), new { id = customer.Id }, customer);
-            return customer1; 
+            return customer1; /*CreatedAtAction(nameof(Get), new {id= customer.Id }, customer);*/
         }
 
         // PUT api/<CustomerController>/5
