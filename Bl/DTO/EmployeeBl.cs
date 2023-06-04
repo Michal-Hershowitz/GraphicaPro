@@ -18,12 +18,15 @@ namespace Bl.DTO
         public string Name { get; set; }
         [BsonElement("password")]
         public int? Password { get; set; }
+        [BsonElement("type")]
+        public string Type { get; set; }
 
-        public EmployeeBl(string id, string name, int password)
+        public EmployeeBl(string id, string name, int password, string type)
         {
             Id = id;
             Name = name;
             Password = password;
+            Type = type;
         }
         public EmployeeBl()
         {
