@@ -1,4 +1,4 @@
-# GraphicPro: Online Graphics Hub - Comprehensive Client Management
+# GraphicaPro: Online Graphics Hub - Comprehensive Client Management
 
 GraphicFlow is a comprehensive platform designed to streamline client management for independent graphic artists. The aim of this project is to develop a centralized website for freelance graphic designers to efficiently manage their workflow and collaborate with clients. The platform is geared towards providing a smooth experience for both artists and clients, ensuring clear communication, accurate pricing, automated time tracking, administrative organization, and convenient access to completed work.
 
