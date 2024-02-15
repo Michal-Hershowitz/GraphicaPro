@@ -24,17 +24,6 @@ GraphicFlow is a comprehensive platform designed to streamline client management
 - **Frontend:** The frontend is built with React.js, providing a responsive and interactive user interface.
 - **Database:** GraphicFlow utilizes MongoDB as its database to store and manage data efficiently.
 
-## Installation:
-
-To run GraphicFlow locally, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Navigate to the root directory of the project.
-3. Install the necessary dependencies by running `npm install` in the frontend directory.
-4. Run the backend server using your preferred method for running C# applications.
-5. Start the frontend server by running `npm start` in the frontend directory.
-6. Access GraphicFlow by opening your web browser and navigating to the specified URL.
-
 ## Summary:
 
 The proposed website serves as an essential tool for independent graphic artists, offering a comprehensive package of features designed to simplify client management. By providing a clear and structured framework for work agreements, pricing calculations, time tracking, administrative organization, client communication, payment integration, and work delivery, this platform empowers graphic artists to focus on their craft and deliver exceptional results while enhancing client satisfaction.
