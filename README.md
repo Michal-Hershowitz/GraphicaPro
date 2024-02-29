@@ -1,4 +1,4 @@
-# GraphicFlow: Online Graphics Hub
+# GraphicaPro: Online Graphics Hub - Comprehensive Client Management
 
 GraphicFlow is a comprehensive platform designed to streamline client management for independent graphic artists. The aim of this project is to develop a centralized website for freelance graphic designers to efficiently manage their workflow and collaborate with clients. The platform is geared towards providing a smooth experience for both artists and clients, ensuring clear communication, accurate pricing, automated time tracking, administrative organization, and convenient access to completed work.
 
@@ -23,17 +23,6 @@ GraphicFlow is a comprehensive platform designed to streamline client management
 - **Backend:** The backend of GraphicFlow is developed using C#.
 - **Frontend:** The frontend is built with React.js, providing a responsive and interactive user interface.
 - **Database:** GraphicFlow utilizes MongoDB as its database to store and manage data efficiently.
-
-## Installation:
-
-To run GraphicFlow locally, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Navigate to the root directory of the project.
-3. Install the necessary dependencies by running `npm install` in the frontend directory.
-4. Run the backend server using your preferred method for running C# applications.
-5. Start the frontend server by running `npm start` in the frontend directory.
-6. Access GraphicFlow by opening your web browser and navigating to the specified URL.
 
 ## Summary:
 
