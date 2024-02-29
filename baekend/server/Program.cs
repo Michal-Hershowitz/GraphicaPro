@@ -6,6 +6,8 @@ using Bl.Interface;
 using Bl.Profiles;
 using Bl;
 using Dal.Interface;
+using server;
+
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 //
